@@ -1,0 +1,23 @@
+# Logs
+*.log
+logs/
+
+# PID files
+*.pid
+
+# Test artifacts
+*.test
+*.tmp
+
+# macOS
+.DS_Store
+
+# Editor directories and files
+.idea
+.vscode
+*.swp
+*.swo
+
+# User-specific files
+.claude-last-activity*
+.claude-auto-renew*
