@@ -13,7 +13,7 @@
 LOG_FILE="$HOME/.claude-auto-renew.log"
 LAST_ACTIVITY_FILE="$HOME/.claude-last-activity"
 LAST_WAKE_FILE="$HOME/.claude-last-wake"
-LOCK_FILE="$HOME/.claude-auto-renew.lock"
+LOCK_FILE="/tmp/claude-auto-renew-sleepaware.lock"
 MISSED_RENEWAL_FILE="$HOME/.claude-missed-renewal"
 
 # Timezone settings for Japan
@@ -514,19 +514,18 @@ if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
         log_message "Running in test/force mode - skipping time checks"
         
         # Create lock file manually for test
-        local lock_file="$LOCK_FILE"
-        if [ -f "$lock_file" ]; then
-            local existing_pid=$(cat "$lock_file")
+        if [ -f "$LOCK_FILE" ]; then
+            existing_pid=$(cat "$LOCK_FILE")
             if kill -0 "$existing_pid" 2>/dev/null; then
                 log_message "ERROR: Another instance is already running (PID: $existing_pid)"
                 exit 1
             else
                 log_message "Removing stale lock file"
-                rm -f "$lock_file"
+                rm -f "$LOCK_FILE"
             fi
         fi
         
-        echo $$ > "$lock_file"
+        echo $$ > "$LOCK_FILE"
         log_message "Lock file created with PID: $$"
         
         # Skip time checks and force renewal
@@ -541,7 +540,7 @@ if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
         
         # Clean up
         log_message "Cleaning up..."
-        rm -f "$lock_file"
+        rm -f "$LOCK_FILE"
         log_message "Lock file removed"
         
         exit $exit_code

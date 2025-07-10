@@ -10,42 +10,134 @@
         <string>/Users/yashmehta/src/cc-auto-ping/scripts/claude-auto-renew-sleepaware.sh</string>
     </array>
     
-    <key>RunAtLoad</key>
-    <true/>
-    
-    <key>StartInterval</key>
-    <integer>300</integer>
-    
-    <key>StandardOutPath</key>
-    <string>/Users/yashmehta/.claude-auto-renew-launchd.log</string>
-    
-    <key>StandardErrorPath</key>
-    <string>/Users/yashmehta/.claude-auto-renew-launchd-error.log</string>
-    
     <key>EnvironmentVariables</key>
     <dict>
-        <key>PATH</key>
-        <string>/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/homebrew/bin</string>
         <key>TZ</key>
         <string>Asia/Tokyo</string>
     </dict>
     
-    <key>WorkingDirectory</key>
-    <string>/Users/yashmehta/src/cc-auto-ping</string>
+    <key>StartCalendarInterval</key>
+    <array>
+        <!-- Monday 7:00 AM JST -->
+        <dict>
+            <key>Weekday</key>
+            <integer>1</integer>
+            <key>Hour</key>
+            <integer>7</integer>
+            <key>Minute</key>
+            <integer>0</integer>
+        </dict>
+        <!-- Monday 12:01 PM JST -->
+        <dict>
+            <key>Weekday</key>
+            <integer>1</integer>
+            <key>Hour</key>
+            <integer>12</integer>
+            <key>Minute</key>
+            <integer>1</integer>
+        </dict>
+        <!-- Tuesday 7:00 AM JST -->
+        <dict>
+            <key>Weekday</key>
+            <integer>2</integer>
+            <key>Hour</key>
+            <integer>7</integer>
+            <key>Minute</key>
+            <integer>0</integer>
+        </dict>
+        <!-- Tuesday 12:01 PM JST -->
+        <dict>
+            <key>Weekday</key>
+            <integer>2</integer>
+            <key>Hour</key>
+            <integer>12</integer>
+            <key>Minute</key>
+            <integer>1</integer>
+        </dict>
+        <!-- Wednesday 7:00 AM JST -->
+        <dict>
+            <key>Weekday</key>
+            <integer>3</integer>
+            <key>Hour</key>
+            <integer>7</integer>
+            <key>Minute</key>
+            <integer>0</integer>
+        </dict>
+        <!-- Wednesday 12:01 PM JST -->
+        <dict>
+            <key>Weekday</key>
+            <integer>3</integer>
+            <key>Hour</key>
+            <integer>12</integer>
+            <key>Minute</key>
+            <integer>1</integer>
+        </dict>
+        <!-- Thursday 7:00 AM JST -->
+        <dict>
+            <key>Weekday</key>
+            <integer>4</integer>
+            <key>Hour</key>
+            <integer>7</integer>
+            <key>Minute</key>
+            <integer>0</integer>
+        </dict>
+        <!-- Thursday 12:01 PM JST -->
+        <dict>
+            <key>Weekday</key>
+            <integer>4</integer>
+            <key>Hour</key>
+            <integer>12</integer>
+            <key>Minute</key>
+            <integer>1</integer>
+        </dict>
+        <!-- Friday 7:00 AM JST -->
+        <dict>
+            <key>Weekday</key>
+            <integer>5</integer>
+            <key>Hour</key>
+            <integer>7</integer>
+            <key>Minute</key>
+            <integer>0</integer>
+        </dict>
+        <!-- Friday 12:01 PM JST -->
+        <dict>
+            <key>Weekday</key>
+            <integer>5</integer>
+            <key>Hour</key>
+            <integer>12</integer>
+            <key>Minute</key>
+            <integer>1</integer>
+        </dict>
+        <!-- Saturday 7:00 AM JST -->
+        <dict>
+            <key>Weekday</key>
+            <integer>6</integer>
+            <key>Hour</key>
+            <integer>7</integer>
+            <key>Minute</key>
+            <integer>0</integer>
+        </dict>
+        <!-- Saturday 12:01 PM JST -->
+        <dict>
+            <key>Weekday</key>
+            <integer>6</integer>
+            <key>Hour</key>
+            <integer>12</integer>
+            <key>Minute</key>
+            <integer>1</integer>
+        </dict>
+    </array>
     
-    <key>ProcessType</key>
-    <string>Background</string>
+    <key>StandardOutPath</key>
+    <string>/Users/yashmehta/src/cc-auto-ping/logs/claude-autorenew-sleepaware.log</string>
     
-    <key>ThrottleInterval</key>
-    <integer>60</integer>
-    
-    <key>LimitLoadToSessionType</key>
-    <string>Aqua</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/yashmehta/src/cc-auto-ping/logs/claude-autorenew-sleepaware-error.log</string>
     
     <key>KeepAlive</key>
-    <dict>
-        <key>SuccessfulExit</key>
-        <false/>
-    </dict>
+    <false/>
+    
+    <key>RunAtLoad</key>
+    <false/>
 </dict>
 </plist>

@@ -6,13 +6,13 @@ echo "=== Testing Enhanced Claude Auto-Renewal Script ==="
 
 # Test 1: Check if script exists and is executable
 echo "Test 1: Checking script existence and permissions"
-if [ -f "/Users/yashmehta/src/cc-auto-ping/claude-auto-renew-sleepaware.sh" ]; then
+if [ -f "/Users/yashmehta/src/cc-auto-ping/scripts/claude-auto-renew-sleepaware.sh" ]; then
     echo "✓ Script file exists"
-    if [ -x "/Users/yashmehta/src/cc-auto-ping/claude-auto-renew-sleepaware.sh" ]; then
+    if [ -x "/Users/yashmehta/src/cc-auto-ping/scripts/claude-auto-renew-sleepaware.sh" ]; then
         echo "✓ Script is executable"
     else
         echo "✗ Script is not executable"
-        chmod +x "/Users/yashmehta/src/cc-auto-ping/claude-auto-renew-sleepaware.sh"
+        chmod +x "/Users/yashmehta/src/cc-auto-ping/scripts/claude-auto-renew-sleepaware.sh"
         echo "✓ Made script executable"
     fi
 else
@@ -88,7 +88,7 @@ done
 
 # Test 6: Syntax check
 echo "Test 6: Syntax check"
-if bash -n "/Users/yashmehta/src/cc-auto-ping/claude-auto-renew-sleepaware.sh"; then
+if bash -n "/Users/yashmehta/src/cc-auto-ping/scripts/claude-auto-renew-sleepaware.sh"; then
     echo "✓ Script syntax is valid"
 else
     echo "✗ Script has syntax errors"
@@ -100,7 +100,7 @@ echo "Test 7: Testing function availability"
 cat > /tmp/test_functions.sh << 'EOF'
 #!/bin/bash
 # Source the script but override main to prevent execution
-source /Users/yashmehta/src/cc-auto-ping/claude-auto-renew-sleepaware.sh
+source /Users/yashmehta/src/cc-auto-ping/scripts/claude-auto-renew-sleepaware.sh
 
 # Test individual functions
 echo "Testing log_message function:"
@@ -136,7 +136,10 @@ rm -f /tmp/test_functions.sh
 
 # Test 8: Dry run test
 echo "Test 8: Dry run test (will exit after 10 seconds)"
-timeout 10 "/Users/yashmehta/src/cc-auto-ping/claude-auto-renew-sleepaware.sh" &
+"/Users/yashmehta/src/cc-auto-ping/scripts/claude-auto-renew-sleepaware.sh" &
+PID=$!
+sleep 10
+kill $PID 2>/dev/null || true
 sleep 5
 echo "✓ Script can start and run"
 

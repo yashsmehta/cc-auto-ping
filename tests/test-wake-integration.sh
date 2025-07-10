@@ -10,33 +10,33 @@ echo ""
 
 echo "1. Testing wake helper directly..."
 echo "-----------------------------------"
-./pmset-wake-helper.sh test
+./scripts/pmset-wake-helper.sh test
 echo ""
 
 echo "2. Testing daemon manager integration..."
 echo "----------------------------------------"
-./claude-daemon-manager.sh wake-status
+./scripts/claude-sleep-aware-manager.sh wake-status
 echo ""
 
 echo "3. Testing help system..."
 echo "------------------------"
-./claude-daemon-manager.sh | tail -10
+./scripts/claude-sleep-aware-manager.sh logs | tail -10
 echo ""
 
 echo "4. Testing verification..."
 echo "-------------------------"
-./claude-daemon-manager.sh wake-verify
+./scripts/claude-sleep-aware-manager.sh wake-verify
 echo ""
 
 echo "5. File permissions check..."
 echo "----------------------------"
-ls -la pmset-wake-helper.sh claude-daemon-manager.sh
+ls -la scripts/pmset-wake-helper.sh scripts/claude-sleep-aware-manager.sh
 echo ""
 
 echo "6. Testing error handling (sudo required commands)..."
 echo "----------------------------------------------------"
 echo "Testing setup-wake without sudo (should show error):"
-./claude-daemon-manager.sh setup-wake
+./scripts/claude-sleep-aware-manager.sh setup-wake
 echo ""
 
 echo "==============================================="
@@ -44,7 +44,7 @@ echo "Test Complete!"
 echo "==============================================="
 echo ""
 echo "To actually setup wake scheduling, run:"
-echo "  sudo ./claude-daemon-manager.sh setup-wake"
+echo "  sudo ./scripts/claude-sleep-aware-manager.sh setup-wake"
 echo ""
 echo "To check current system schedule:"
 echo "  pmset -g sched"
