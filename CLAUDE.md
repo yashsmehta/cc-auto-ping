@@ -50,9 +50,6 @@ CC AutoRenew is a sleep-aware scheduling system that automatically maintains Cla
 
 # Uninstall system
 ./scripts/claude-sleep-aware-manager.sh uninstall
-
-# Migrate from legacy daemon
-./scripts/claude-sleep-aware-manager.sh migrate
 ```
 
 ### Testing and Development
@@ -155,19 +152,19 @@ cc-auto-ping/
 │       ├── SCHEDULE_UPDATE_SUMMARY.md  # Schedule update history
 │       ├── WAKE_SCHEDULING_GUIDE.md    # Wake scheduling guide
 │       └── schedule-config.md          # Schedule configuration docs
-└── logs/                               # Log files
+└── logs/                               # Log files (created at runtime)
     ├── claude-autorenew-sleepaware.log     # Main activity log
     └── claude-autorenew-sleepaware-error.log # Error log
 ```
 
 ### Directory Organization
 
-- **scripts/**: Core system functionality (4 active scripts)
+- **scripts/**: Core system functionality (4 scripts)
 - **setup/**: Installation and configuration utilities
 - **config/**: System configuration files
 - **utils/**: Helper and validation scripts
 - **tests/**: Testing and verification scripts
-- **docs/archived/**: Historical documentation (removed from main directory)
+- **docs/archived/**: Historical documentation
 - **logs/**: Runtime logs and activity tracking
 
 This structure provides:
@@ -228,10 +225,10 @@ The scripts do not handle sensitive data or provide attack surfaces - they only 
 4. **Timezone Problems**: Use `./scripts/claude-timezone-config.sh info` to verify JST
 5. **Wake Scheduling**: Check `pmset -g sched` for active wake schedules
 
-### Migration from Legacy System
+### Verifying Installation
 
 ```bash
-# Install new sleep-aware system
+# Install sleep-aware system
 ./scripts/claude-sleep-aware-manager.sh install
 
 # Verify installation

@@ -16,13 +16,27 @@ LAST_WAKE_FILE="$HOME/.claude-last-wake"
 LOCK_FILE="/tmp/claude-auto-renew-sleepaware.lock"
 MISSED_RENEWAL_FILE="$HOME/.claude-missed-renewal"
 
-# Timezone settings for Japan
+# Load configuration from JSON if available
+CONFIG_FILE="$HOME/src/cc-auto-ping/config/schedule-config.json"
+CONFIG_READER="$(dirname "$0")/claude-config-reader.sh"
+
+# Default timezone (can be overridden by config)
 export TZ="Asia/Tokyo"
 
-# Function to log messages with Japan timezone
+# Load config if available
+if [ -f "$CONFIG_FILE" ] && [ -f "$CONFIG_READER" ]; then
+    source "$CONFIG_READER"
+    export_config_env 2>/dev/null || true
+    # Override timezone if set in config
+    if [ -n "$CLAUDE_TIMEZONE" ]; then
+        export TZ="$CLAUDE_TIMEZONE"
+    fi
+fi
+
+# Function to log messages with configured timezone
 log_message() {
-    local timestamp=$(TZ=Asia/Tokyo date '+%Y-%m-%d %H:%M:%S JST')
-    echo "[$timestamp] $1" | tee -a "$LOG_FILE"
+    local timestamp=$(date '+%Y-%m-%d %H:%M:%S %Z')
+    echo "[$timestamp] $1" >> "$LOG_FILE"
 }
 
 # Function to create lock file
